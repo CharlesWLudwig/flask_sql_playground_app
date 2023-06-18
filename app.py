@@ -8,7 +8,9 @@ def index():
 
 @app.route('/process_query', methods = ['GET', 'POST'])
 def process_query():
-    return render_template('index.html')
+    if request.method== 'POST':
+        raw_query = request.form['raw_query']
+    return render_template('index.html', raw_query=raw_query)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001, use_reloader=True)
