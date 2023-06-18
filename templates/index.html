@@ -14,10 +14,10 @@
     <script src="{{ url_for('static', filename='codemirror/mode/sql/sql.js') }}"></script>
     <script src="{{ url_for('static', filename='codemirror/addon/edit/closetag.js') }}"></script>   
     <script src="{{ url_for('static', filename='codemirror/addon/edit/closebrackets.js') }}"></script>  
-    <title>SQL Playground</title>   
+    <title>SQL Playground</title>  
 </head>
 <body> 
-     <section id="results">
+    <section id="results">
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
@@ -25,7 +25,7 @@
                         <br/>
                         <form method="POST" action="/process_query">
                             <textarea name="raw_query" id="editor" cols="30" rows="10"></textarea>
-                                <button type="reset">Reset Query</button>
+                                <button type="reset"><a href="/">Reset Query</a></button>
                                 <button type="submit">Submit Query</button>
                         </form>    
                     </div>
@@ -44,7 +44,7 @@
             </div>    
             <div class="row">
                 <h5>RESULTS</h5>
-                {{ results }}
+                {{ results.to_html() | safe }}
             </div>           
         </div>
     </section>
