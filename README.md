@@ -1,1 +1,1 @@
-# flask_sql_playground_app
+# Learn SQL coding in an Interactive SQL Playground!
