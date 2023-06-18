@@ -14,10 +14,10 @@
     <script src="{{ url_for('static', filename='codemirror/mode/sql/sql.js') }}"></script>
     <script src="{{ url_for('static', filename='codemirror/addon/edit/closetag.js') }}"></script>   
     <script src="{{ url_for('static', filename='codemirror/addon/edit/closebrackets.js') }}"></script>  
-    <title>SQL Playground</title>
+    <title>SQL Playground</title>   
 </head>
-<body>
-    <section id="results">
+<body> 
+     <section id="results">
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
@@ -33,7 +33,18 @@
             </div>
             <hr/>
             <div class="row">
+                Default: SELECT 
+                name
+            FROM 
+                sqlite_schema
+            WHERE 
+                type ='table' AND 
+                name NOT LIKE 'sqlite_%';
                 {{ raw_query }}
+            </div>    
+            <div class="row">
+                <h5>RESULTS</h5>
+                {{ results }}
             </div>           
         </div>
     </section>
