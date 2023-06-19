@@ -1,8 +1,11 @@
-from flask import Flask, render_template, url_for, request
+from flask import Flask, abort, send_file, make_response, render_template, url_for, request
 import sqlite3
+import socket
 import pandas as pd
+import flask_excel as excel
 
-conn = sqlite3.connect('factbook.db', check_same_thread=False)
+db_title = 'factbook'
+conn = sqlite3.connect(f'{db_title}.db', check_same_thread=False)
 c = conn.cursor()
 
 def sql_execution(raw_query):
@@ -16,15 +19,24 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     results = pd.DataFrame([])
-    return render_template('index.html', results=results)
+    return render_template('base.html', db_title=db_title, results=results)
 
 @app.route('/process_query', methods = ['GET', 'POST'])
 def process_query():
     if request.method== 'POST':
+        global raw_query
         raw_query = request.form["raw_query"]
-        results = sql_execution(raw_query)
+        global results          
+        results = sql_execution(raw_query)      
         results = pd.DataFrame(results)
-    return render_template('index.html', raw_query=raw_query, results=results)
+    return render_template('process_query.html', raw_query=raw_query, db_title=db_title, results=results)
+
+@app.route('/download', methods=['GET', 'POST'])
+def download_data(): 
+    resp = make_response(results.to_csv())
+    resp.headers["Content-Disposition"] = "attachment; filename=export.csv"
+    resp.headers["Content-Type"] = "text/csv"
+    return resp
 
 if __name__ == '__main__':
     app.run(debug=True, port=5002, use_reloader=True)

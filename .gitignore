@@ -3,9 +3,13 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+templates/chart.html
+templates/dashboard.html
+node_modules/
+
 # C extensions
 *.so
-
+non.txt
 # Distribution / packaging
 .Python
 build/
