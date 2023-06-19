@@ -39,6 +39,8 @@ def download_data():
     resp.headers["Content-Disposition"] = "attachment; filename=export.csv"
     resp.headers["Content-Type"] = "text/csv"
     return resp
-
+ 
 if __name__ == '__main__':
-    app.run(debug=True, port=5002, use_reloader=True)
+    app.debug = True
+    app.use_reloader=True
+    app.run()
