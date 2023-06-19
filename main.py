@@ -29,9 +29,8 @@ def process_query():
         raw_query = request.form["raw_query"]
         global results          
         results = sql_execution(raw_query)      
-        results = pd.DataFrame(results)
-        str_io = io.StringIO()
-    return render_template('process_query.html', str_io=str_io, raw_query=raw_query, db_title=db_title, results=results)
+        results = pd.DataFrame(results) 
+    return render_template('process_query.html', raw_query=raw_query, db_title=db_title, results=results)
 
 @app.route('/download', methods=['GET', 'POST'])
 def download_data(): 
