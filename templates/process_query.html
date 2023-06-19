@@ -59,7 +59,7 @@
             </div>    
             <div class="row">
                 <h5>RESULTS</h5>
-                {{ results.to_html() | safe }} 
+                {{ results.to_html(classes='table table-striped', header = "true", justify = "center") | safe }} 
             </div>           
             <div>
                 <!-- {% include 'chart.html' %} -->

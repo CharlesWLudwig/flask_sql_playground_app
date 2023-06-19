@@ -1,5 +1,6 @@
 from flask import Flask, abort, send_file, make_response, render_template, url_for, request
 import sqlite3
+import io
 import socket
 import pandas as pd
 import flask_excel as excel
@@ -29,7 +30,8 @@ def process_query():
         global results          
         results = sql_execution(raw_query)      
         results = pd.DataFrame(results)
-    return render_template('process_query.html', raw_query=raw_query, db_title=db_title, results=results)
+        str_io = io.StringIO()
+    return render_template('process_query.html', str_io=str_io, raw_query=raw_query, db_title=db_title, results=results)
 
 @app.route('/download', methods=['GET', 'POST'])
 def download_data(): 
