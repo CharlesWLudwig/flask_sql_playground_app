@@ -13,9 +13,9 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='codemirror/lib/codemirror.css') }}">
     <script src="{{ url_for('static', filename='codemirror/lib/codemirror.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"></script>
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/codemirror.js"></script>-->
-    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/codemirror.css" />-->
-    <!--<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/codemirror.js"></script> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/codemirror.css" /> 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='codemirror/theme/monokai.css') }}">
     <script src="{{ url_for('static', filename='codemirror/mode/sql/sql.js') }}"></script>
     <script src="{{ url_for('static', filename='codemirror/addon/edit/closetag.js') }}"></script>   
@@ -59,7 +59,7 @@
             </div>    
             <div class="row">
                 <h5>RESULTS</h5>
-                {{ results.to_html(classes='table table-striped', header = "true", justify = "center") | safe }} 
+                {{ results.to_html(classes='table table-striped table-hover', header = "true", justify = "center") | safe }} 
             </div>                
         </div>
     </section>
@@ -74,6 +74,12 @@
            } 
         );
     </script>
+    <script type='text/javascript'>
+        window.onload = function() {
+        const thead = document.querySelectorAll('.table > thead');
+        thead.forEach(e => e.classList.add('thead-light'));
+        }
+    </script>  
 </body>
 </html>
 {% endblock %}

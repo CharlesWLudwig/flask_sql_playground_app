@@ -41,5 +41,5 @@ def download_data():
  
 if __name__ == '__main__':
     app.debug = True
-    app.use_reloader=True
+    app.use_reloader=True 
     app.run()
